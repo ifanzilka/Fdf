@@ -12,10 +12,14 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define M_ADD 1
-# define M_REMOVE 0
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif 
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -72,10 +76,7 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
-void				ft_garbage_collector(void *ptr, int action);
-void				*calloc_gc(size_t nmemb, size_t size);
-void				*malloc_gc(size_t sizemem);
-void				free_gc(void *ptr);
+int					get_next_line(int fd, char **line);
 
 /*
 ** List

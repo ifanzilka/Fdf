@@ -7,4 +7,11 @@ enum error
 	err_open = 2
 };
 
+typedef struct		s_map
+{
+	int 			height;
+	int 			width;
+	int				**z;
+}					t_map;
+
 #endif

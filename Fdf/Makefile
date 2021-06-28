@@ -11,6 +11,8 @@ F_BLUE		= \033[34m
 
 adds =
 
+FLAGS	= -Wall -Wextra -Werror 
+
 ifeq ($(OS), Linux)
 	COMPILE = Linux Compile...
 	#@echo "$(F_GREEN) Linux Compile...$(F_NONE)"
@@ -27,6 +29,7 @@ ifeq ($(OS), Darwin)
 	LIB_MLX = ./minilibx/minilbx_mac
 	OPENGL = -lz -framework OpenGL -framework AppKit
 	MLX_A = libmlx.dylib
+	FLAGS	+= -D DARWIN=1
 endif
 
 NAME_PROJECT = fdf
@@ -46,7 +49,7 @@ CC		= gcc
 HEADER	= includes
 #depth -> recurse len
 
-FLAGS	= -Wall -Wextra -Werror 
+
 
 OBJS	 = $(SRCS:.c=.o)
 

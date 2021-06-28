@@ -36,8 +36,7 @@ void	draw_line(float x, float y, float x1, float y1, t_data *data)
 	
 	z = data->map.z_matrix[(int)y][(int)x];
 	z1 = data->map.z_matrix[(int)y1][(int)x1];
-		format3d(&x, &y, z);
-	format3d(&x1, &y1, z1);
+		
 	
 	x *= data->zoom;
 	y *= data->zoom;
@@ -49,16 +48,17 @@ void	draw_line(float x, float y, float x1, float y1, t_data *data)
 	else
 		data->color = WHIITE;
 	
-
+	format3d(&x, &y, z);
+	format3d(&x1, &y1, z1);
 	x_step = x1 - x;
  	y_step = y1 - y;
+	
 
 
-
-	x +=150;
-	y +=150;
-	x1 +=150;
-	y1 +=150;
+	x += data->shift_x;
+	y += data->shift_y;
+	x1 += data->shift_x;
+	y1 += data->shift_y;
 	
 	maxi = max(mod(x_step), mod(y_step));
 	x_step /= maxi;
@@ -94,9 +94,24 @@ void draw(t_data *data)
 	}
 }
 
-int	ft_keyyboard(int keycode)
+int	ft_keyyboard(int keycode, t_data *data)
 {
+	(void) data;
 	printf("Keycode: %d\n", keycode);
+	if (keycode == LEFT)	
+		data->shift_x -=10;
+	if (keycode == RIGHT)
+		data->shift_x +=10;
+	if (keycode == UP)
+		data->shift_y +=10;
+	if (keycode == DOWN)
+		data->shift_y -=10;
+	if (keycode == PLUS)
+		data->zoom +=5;
+	if (keycode == MINUS)
+		data->zoom -=5;		
+	mlx_clear_window(data->mlx_ptr, data->mlx_win);
+	draw(data);
 	return (0);
 }
 
@@ -105,9 +120,10 @@ void	ft_init_mlx(t_data *data)
 	data->mlx_ptr = mlx_init();
 	data->mlx_win = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, NAME_PROGRAMM);
 	data->zoom = ZOOM;
-	//draw_line(20, 20 , 100 , 100, data);
+	data->shift_x = 0;
+	data->shift_y = 0;
 	draw(data);
-	mlx_key_hook(data->mlx_win, ft_keyyboard, NULL);
+	mlx_key_hook(data->mlx_win, ft_keyyboard, data);
 	mlx_loop(data->mlx_ptr);
 }
 

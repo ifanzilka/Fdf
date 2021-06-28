@@ -1,6 +1,23 @@
 #ifndef FDF_H
 # define FDF_H
 
+# define UP 125
+# define DOWN 126
+# define LEFT 123
+# define RIGHT 124
+# define PLUS 69
+# define MINUS 78
+
+#ifdef DARWIN
+
+# define UP 125
+# define DOWN 126
+# define LEFT 123
+# define RIGHT 124
+# define PLUS 69
+# define MINUS 78
+
+# endif
 
 # define NAME_PROGRAMM "Fdf"
 # define WIDTH 1000
@@ -28,6 +45,8 @@ typedef struct		s_data
 	t_map			map;
 	int				zoom;
 	int 			color;
+	int				shift_x;
+	int				shift_y;
 	void			*mlx_win;
 	void			*mlx_ptr;
 }					t_data;

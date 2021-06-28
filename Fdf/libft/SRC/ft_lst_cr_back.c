@@ -17,7 +17,8 @@ t_list	*ft_lst_cr_back(t_list **lst, void *content)
 	t_list	*new;
 	t_list	*cur;
 
-	if (!(new = ft_lstnew(content)))
+	new = ft_lstnew(content);
+	if (!(new))
 		return (NULL);
 	if (!lst)
 		return (NULL);

@@ -14,7 +14,7 @@
 
 int	ft_pow(int a, int n)
 {
-	int res;
+	int	res;
 
 	res = 1;
 	while (n)

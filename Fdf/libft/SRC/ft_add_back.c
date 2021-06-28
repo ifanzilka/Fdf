@@ -17,10 +17,12 @@ int	ft_add_back(char **str, char c, int n)
 	char	*tmp;
 	char	*tmp2;
 
-	if (!(tmp = (ft_create_str(c, n))) || !*str)
+	tmp = (ft_create_str(c, n));
+	if (!(tmp) || !*str)
 		return (-1);
 	tmp2 = *str;
-	if (!(*str = ft_strjoin(tmp2, tmp)))
+	*str = ft_strjoin(tmp2, tmp);
+	if (!(str))
 	{
 		free(tmp);
 		return (-1);

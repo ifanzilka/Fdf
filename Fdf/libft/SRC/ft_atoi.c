@@ -27,11 +27,18 @@
 ** Возвращает число
 */
 
+static int	ft_sing(int sign)
+{
+	if (sign > 0)
+		return (-1);
+	return (0);
+}
+
 int	ft_atoi(const char *ptr)
 {
-	unsigned	res;
-	unsigned	last_res;
-	int			sign;
+	unsigned int	res;
+	unsigned int	last_res;
+	int				sign;
 
 	res = 0;
 	sign = 1;
@@ -46,7 +53,7 @@ int	ft_atoi(const char *ptr)
 		last_res = res;
 		res = res * 10 + *ptr - '0';
 		if (last_res > res)
-			return (sign > 0 ? -1 : 0);
+			return (ft_sing(sign));
 		ptr++;
 	}
 	return (res * sign);

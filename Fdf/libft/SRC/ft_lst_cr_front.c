@@ -14,9 +14,10 @@
 
 t_list	*ft_lst_cr_front(t_list **lst, void *content)
 {
-	t_list *new;
+	t_list	*new;
 
-	if (!(new = ft_lstnew(content)))
+	new = ft_lstnew(content);
+	if (!(new))
 		return (NULL);
 	if (!lst)
 		return (NULL);

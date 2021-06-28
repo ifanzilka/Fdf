@@ -40,13 +40,14 @@ static char	*ft_strcpy(char *dst, const char *s1)
 	return (dst);
 }
 
-char		*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	int		len;
 	char	*ptr;
 
 	len = ft_strlen(s1);
-	if (!(ptr = (char *)malloc(sizeof(char) * (len + 1))))
+	ptr = (char *)malloc(sizeof(char) * (len + 1));
+	if (!(ptr))
 		return (NULL);
 	return (ft_strcpy(ptr, s1));
 }

@@ -18,15 +18,14 @@ static void	delete(t_list *lst, void (*del)(void *))
 	free(lst);
 }
 
-void		ft_lstdelel(t_list **lst, void *content, int (*cmp)(void *, void *),
+void	ft_lstdelel(t_list **lst, void *content, int (*cmp)(void *, void *),
 						void (*del)(void *))
 {
 	t_list	*tmp;
 	t_list	*pre;
 
-	//tmp = NULL;
 	if (cmp((*lst)->content, content) == 0)
-    {
+	{
 		tmp = (*lst)->next;
 		delete(*lst, del);
 		*lst = tmp;
@@ -35,9 +34,9 @@ void		ft_lstdelel(t_list **lst, void *content, int (*cmp)(void *, void *),
 	pre = *lst;
 	tmp = pre->next;
 	while (tmp)
-    {
+	{
 		if (cmp(tmp->content, content) == 0)
-        {
+		{
 			pre->next = tmp->next;
 			delete(tmp, del);
 			return ;

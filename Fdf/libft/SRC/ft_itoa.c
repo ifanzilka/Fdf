@@ -32,7 +32,10 @@ static int	ft_cnt_len_str(int n)
 {
 	int	len;
 
-	len = (n <= 0) ? 1 : 0;
+	if (n <= 0)
+		len = 1;
+	else
+		len = 0;
 	while (n)
 	{
 		len++;
@@ -41,7 +44,7 @@ static int	ft_cnt_len_str(int n)
 	return (len);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char	*s;
 	int		len;
@@ -49,7 +52,8 @@ char		*ft_itoa(int n)
 
 	nn = n;
 	len = ft_cnt_len_str(n);
-	if (!(s = (char *)malloc(len + 1)))
+	s = (char *)malloc(len + 1);
+	if (!(s))
 		return (NULL);
 	s[len] = '\0';
 	if (nn < 0)

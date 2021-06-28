@@ -22,7 +22,6 @@ HEADER	= ./includes
 
 FLAGS	= -Wall -Wextra -Werror 
 
-DIR_MEMORY = ./SRC/memory/
 
 SRCS	= $(DIR)ft_bzero.c 		$(DIR)ft_isalnum.c 	$(DIR)ft_calloc.c \
 		  $(DIR)ft_isascii.c  	$(DIR)ft_isdigit.c 	$(DIR)ft_isalpha.c \
@@ -37,13 +36,13 @@ SRCS	= $(DIR)ft_bzero.c 		$(DIR)ft_isalnum.c 	$(DIR)ft_calloc.c \
 		  $(DIR)ft_split.c 		$(DIR)ft_itoa.c 	$(DIR)ft_strmapi.c \
 		  $(DIR)ft_putchar_fd.c $(DIR)ft_putstr_fd.c $(DIR)ft_putendl_fd.c \
 		  $(DIR)ft_putnbr_fd.c 	$(DIR)ft_intlen.c	$(DIR)ft_pow.c\
-		  $(DIR)ft_print_n_char.c $(DIR)ft_memdel.c $(DIR)ft_memalloc.c\
-		  $(DIR)ft_strnew.c		$(DIR)ft_itoa_with_zero.c\
-		  $(DIR)ft_itoa_unsig_base.c 				$(DIR)ft_strdel.c\
-		  $(DIR)ft_create_str.c $(DIR)ft_add_forward.c\
-		  $(DIR)ft_add_back.c	$(DIR)ft_itoa_ll.c\
+		  $(DIR)ft_memdel.c $(DIR)ft_memalloc.c\
+		  $(DIR)ft_strnew.c	\
+		  	$(DIR)ft_strdel.c\
+		  $(DIR)ft_create_str.c \
+		  $(DIR)ft_add_back.c	\
 		  $(DIR)ft_atof.c\
-		  $(DIR)ft_itoa_unsigned_ll.c $(DIR)ft_itoa_base_x.c \
+		  $(DIR)ft_itoa_base_x.c \
 		  $(DIR)ft_lstnew.c		$(DIR)ft_lstadd_front.c $(DIR)ft_lstsize.c \
 		  $(DIR)ft_lstlast.c		$(DIR)ft_lstadd_back.c\
 		  $(DIR)ft_l_lsnew.c	$(DIR)ft_l_lstadd_front.c	$(DIR)ft_l_lstadd_back.c\
@@ -52,11 +51,7 @@ SRCS	= $(DIR)ft_bzero.c 		$(DIR)ft_isalnum.c 	$(DIR)ft_calloc.c \
 		  $(DIR)ft_lstiter.c 	$(DIR)ft_lstclear.c\
 		  $(DIR)ft_lst_cr_front.c \
 		  $(DIR)ft_l_lst_cr_back.c $(DIR)ft_l_lst_cr_front.c \
-		  $(DIR)ft_lstdelel.c \
-		  $(DIR_MEMORY)ft_garbage_collector.c \
-		  $(DIR_MEMORY)calloc_gc.c $(DIR_MEMORY)free_gc.c \
-		  $(DIR_MEMORY)malloc_gc.c
-		  
+		  $(DIR)ft_lstdelel.c 
 
 F_NONE		= \033[37m
 F_BOLD		= \033[1m

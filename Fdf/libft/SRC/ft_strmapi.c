@@ -33,7 +33,10 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*new;
 	int		i;
 
-	if (!s || !(new = (char*)malloc(ft_strlen(s) + 1)))
+	if (!s)
+		return (NULL);
+	new = (char *)malloc(ft_strlen(s) + 1);
+	if (!new)
 		return (NULL);
 	i = 0;
 	while (s[i])

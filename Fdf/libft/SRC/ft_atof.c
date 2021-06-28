@@ -12,9 +12,9 @@
 
 #include <libft.h>
 
-void		ft_skip_atof(char *str, int *j)
+void	ft_skip_atof(char *str, int *j)
 {
-	int i;
+	int	i;
 
 	i = *j;
 	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
@@ -41,7 +41,7 @@ static	int	ft_check_an(char *str)
 
 static	int	ft_c_an(char *str)
 {
-	int n;
+	int	n;
 
 	n = 0;
 	while (*str && ft_isdigit(*str))
@@ -52,7 +52,7 @@ static	int	ft_c_an(char *str)
 	return (n);
 }
 
-double		ft_atof(char *str)
+double	ft_atof(char *str)
 {
 	double	res;
 	int		sign;

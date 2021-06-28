@@ -16,7 +16,10 @@ size_t	ft_intlen(long long n)
 {
 	size_t	i;
 
-	i = (n == 0) ? 1 : 0;
+	if (n == 0)
+		i = 1;
+	else
+		i = 0;
 	while (n)
 	{
 		n = n / 10;

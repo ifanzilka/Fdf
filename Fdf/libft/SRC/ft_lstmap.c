@@ -28,8 +28,8 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list *head;
-	t_list *node;
+	t_list	*head;
+	t_list	*node;
 
 	if (!lst || !f)
 		return (NULL);

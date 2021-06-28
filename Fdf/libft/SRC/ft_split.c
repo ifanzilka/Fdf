@@ -39,6 +39,7 @@ static size_t	ft_count_words(const char *s, char c)
 	is_start = 1;
 	cnt = 0;
 	while (*s)
+	{
 		if (*(s++) != c)
 		{
 			if (is_start)
@@ -47,10 +48,11 @@ static size_t	ft_count_words(const char *s, char c)
 		}
 		else
 			is_start = 1;
+	}
 	return (cnt);
 }
 
-static char		*ft_strndup_local(const char *s, size_t len)
+static char	*ft_strndup_local(const char *s, size_t len)
 {
 	size_t	l;
 	char	*dup;
@@ -58,14 +60,15 @@ static char		*ft_strndup_local(const char *s, size_t len)
 	l = ft_strlen(s);
 	if (len < l)
 		l = len;
-	if (!(dup = (char*)malloc(l + 1)))
+	dup = (char *)malloc(l + 1);
+	if (!(dup))
 		return (NULL);
 	ft_memcpy(dup, s, l);
 	dup[l] = 0;
 	return (dup);
 }
 
-static char		ft_copy_words(char **arr, const char *s, char c)
+static char	ft_copy_words(char **arr, const char *s, char c)
 {
 	char		*word_start;
 	size_t		word_i;
@@ -94,13 +97,14 @@ static char		ft_copy_words(char **arr, const char *s, char c)
 	return (1);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char		**arr;
 
 	if (!s)
 		return (NULL);
-	if (!(arr = malloc(sizeof(char*) * (ft_count_words(s, c) + 1))))
+	arr = malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
+	if (!(arr))
 		return (NULL);
 	if (!ft_copy_words(arr, s, c))
 		return (NULL);

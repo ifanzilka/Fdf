@@ -33,7 +33,7 @@
 
 size_t	ft_strlen(const char *str)
 {
-	size_t cnt;
+	size_t	cnt;
 
 	cnt = 0;
 	while (str[cnt])

@@ -53,7 +53,7 @@ OBJS	 = $(SRCS:.c=.o)
 
 DIR		= ./srcs/
 
-SRCS = $(DIR)main.c 
+SRCS = $(DIR)main.c $(DIR)ft_parse_map.c
 
 
 AR		= ar rc

@@ -20,6 +20,7 @@ ifeq ($(OS), Linux)
 	LIB_MLX = ./minilibx/minilbx_linux
 	OPENGL = -lm -lbsd -lX11 -lXext 
 	MLX_A = libmlx_Linux.a  
+	FLAGS	+= -D LINUX=1
 	#adds = sudo apt-get install gcc make xorg libxext-dev libbsd-dev
 endif
 ifeq ($(OS), Darwin)

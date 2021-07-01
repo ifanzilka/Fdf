@@ -183,10 +183,11 @@ void	ft_init_mlx(t_data *data)
 	data->shift_y = 0;
 	data->angle = 0.8;
 	
-	//print_menu(data);
+	print_menu(data);
 	draw(data);
 	//mlx_hook()
-	mlx_key_hook(data->mlx_win, ft_keyyboard, data);
+	//mlx_key_hook(data->mlx_win, ft_keyyboard, data);
+	mlx_hook(data->mlx_win, 2, 0, ft_keyyboard, data);
 	mlx_hook(data->mlx_win, 17, 0L, ft_close_win, data);
 	mlx_loop(data->mlx_ptr);
 }
@@ -228,7 +229,7 @@ int main(int argc, char **argv)
 		// 	printf("\n");
 		// 	i++;
 		// }
-		ft_init_mlx(&data);
+		//ft_init_mlx(&data);
 	}
 	return (0);
 }

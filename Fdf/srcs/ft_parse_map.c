@@ -78,12 +78,13 @@ int	ft_parse_map(char *filename, t_map *map)
 	map->width = get_width(filename);
 	map->z_matrix = (int **)malloc(sizeof(int *) * (map->height + 1));
 	i = 0;
+	
 	while (i < map->height)
 		map->z_matrix[i++] = (int *)malloc(sizeof(int) * (map->width + 1));
 	fd = open(filename, O_RDONLY);
 	i = 0;
 	while (get_next_line(fd, &line) && i < map->height )
-	{
+	{	
 		fill_matrix(map->z_matrix[i++], line);
 		free(line);
 	}

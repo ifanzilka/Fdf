@@ -76,11 +76,11 @@ int	ft_parse_map(char *filename, t_map *map)
 
 	map->height = get_height(filename);
 	map->width = get_width(filename);
-	map->z_matrix = (int **)malloc(sizeof(int *) * (map->height + 1));
+	map->z_matrix = (int **)malloc_x(sizeof(int *) * (map->height + 1));
 	i = 0;
-	
+	printf("width: %d\nheight: %d\n ",map->width, map->height);
 	while (i < map->height)
-		map->z_matrix[i++] = (int *)malloc(sizeof(int) * (map->width + 1));
+		map->z_matrix[i++] = (int *)malloc_x(sizeof(int) * (map->width + 1));
 	fd = open(filename, O_RDONLY);
 	i = 0;
 	while (get_next_line(fd, &line) && i < map->height )
@@ -91,5 +91,6 @@ int	ft_parse_map(char *filename, t_map *map)
 	free(line);
 	map->z_matrix[i] = NULL;
 	close(fd);
+	printf("111\n");
 	return (0);
 }

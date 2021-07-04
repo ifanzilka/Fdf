@@ -89,13 +89,14 @@ void	draw_line(float x, float y, float x1, float y1, t_data *data)
 	y_step /= maxi;
 	while ((int)(x  - x1) || (int)(y - y1))
 	{
+		if (x > WIDTH || y > HEIGHT || y < 0 || x < 0)
+			break ;
 		//if (x > 250)
 		my_mlx_pixel_put(data, x, y, data->color);
 			//mlx_pixel_put(data->mlx_ptr, data->mlx_win, x, y, data->color);
 		x += x_step;
 		y += y_step;
-		if (x > WIDTH || y > HEIGHT || y < 0 || x < 0)
-			break ;
+		
 	}
 }
 
@@ -109,6 +110,7 @@ static void	draw_background(t_data *data)
 	i = 0;
 	while (i < HEIGHT * WIDTH)
 	{
+
 		image[i] = (i % WIDTH < MENU_WIDTH) ? MENU_BACKGROUND : BACKGROUND;
 		i++;
 	}
@@ -183,9 +185,8 @@ void	ft_init_mlx(t_data *data)
 	data->shift_y = 0;
 	data->angle = 0.8;
 	
-	print_menu(data);
+	//print_menu(data);
 	draw(data);
-	//mlx_hook()
 	
 	mlx_key_hook(data->mlx_win, ft_keyyboard, data);
 	mlx_hook(data->mlx_win, 2, 0, ft_keyyboard, data);

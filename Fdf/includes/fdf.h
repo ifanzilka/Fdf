@@ -15,8 +15,8 @@
 # define ESC 53
 #else
 
-# define UP 65362
-# define DOWN 65364
+# define UP 65364
+# define DOWN 65362
 # define LEFT 65361
 # define RIGHT 65363
 # define PLUS 61
@@ -35,7 +35,7 @@
 # define COLOR_H
 
 # define TEXT_COLOR			0xEAEAEA
-# define BACKGROUND			0x222222
+# define BACKGROUND			0x222223
 # define MENU_BACKGROUND	0x1E1E1E
 
 # define COLOR_DISCO		0x9A1F6A
@@ -46,7 +46,7 @@
 
 #endif
 
-# define MENU_WIDTH		0
+# define MENU_WIDTH		250
 # define NAME_PROGRAMM "Fdf"
 # define WIDTH 1920
 # define HEIGHT 1080 

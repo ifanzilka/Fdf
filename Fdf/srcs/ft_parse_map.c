@@ -52,16 +52,28 @@ static int get_width(char *filename)
 	return (width);
 }
 
-static void	fill_matrix(int *z_line, char *line)
+static void	fill_matrix(int *z_line, int k, char *line, t_map *map)
 {
 	char	**nums;
+	char	*sub;
 	int		i;
+	
 	
 	i = 0;
 	nums = ft_split(line, ' ');
 	while (nums[i])
 	{
+		printf("nums[i]: %s\n",nums[i]);
 		z_line[i] = ft_atoi(nums[i]);
+		sub = ft_strchr(nums[i], ',');
+		if (sub != NULL)
+		{
+			map->colors[k][i] = 
+			printf("int:%d\ns: %s\n",z_line[i],sub + 1);
+		}
+		else
+			map->colors[k][i] = -1;
+
 		free(nums[i]);
 		i++;
 	}
@@ -119,15 +131,21 @@ int	ft_parse_map(char *filename, t_map *map)
 	map->height = get_height(filename);
 	map->width = get_width(filename);
 	map->z_matrix = (int **)malloc_x(sizeof(int *) * (map->height + 1));
+	map->colors = (int **)malloc_x(sizeof(int *) * (map->height + 1));
 	i = 0;
 	printf("width: %d\nheight: %d\n ",map->width, map->height);
 	while (i < map->height)
-		map->z_matrix[i++] = (int *)malloc_x(sizeof(int) * (map->width + 1));
+	{
+		map->z_matrix[i] = (int *)malloc_x(sizeof(int) * (map->width + 1));
+		map->colors[i] = (int *)malloc_x(sizeof(int) * (map->width + 1));
+		i++;
+	}
 	fd = open(filename, O_RDONLY);
 	i = 0;
 	while (get_next_line(fd, &line) && i < map->height )
 	{	
-		fill_matrix(map->z_matrix[i++], line);
+		fill_matrix(map->z_matrix[i], i,line, map);
+		i++;
 		free(line);
 	}
 	free(line);

@@ -68,6 +68,48 @@ static void	fill_matrix(int *z_line, char *line)
 	free(nums);
 }
 
+int map_max_z(t_map *map)
+{
+	int max = -100;
+	int i;
+	int j;
+
+	i = 0;
+	while (i < map->width)
+	{
+		j = 0;
+		while (j < map->height)
+		{
+			if (map->z_matrix[i][j] > max)
+				max = map->z_matrix[i][j];
+			j++;
+		}
+		i++;
+	}
+	return (max);
+}
+
+int map_min_z(t_map *map)
+{
+	int min = 10000;
+	int i;
+	int j;
+
+	i = 0;
+	while (i < map->width)
+	{
+		j = 0;
+		while (j < map->height)
+		{
+			if (map->z_matrix[i][j] < min)
+				min = map->z_matrix[i][j];
+			j++;
+		}
+		i++;
+	}
+	return (min);
+}
+
 int	ft_parse_map(char *filename, t_map *map)
 {
 	char	*line;
@@ -91,6 +133,8 @@ int	ft_parse_map(char *filename, t_map *map)
 	free(line);
 	map->z_matrix[i] = NULL;
 	close(fd);
+	map->z_max = map_max_z(map);
+	map->z_min = map_min_z(map);
 	printf("111\n");
 	return (0);
 }

@@ -73,9 +73,12 @@ void	draw_line(float x, float y, float x1, float y1, t_data *data)
 	x1 *= data->zoom;
 	y1 *= data->zoom;
 	if (z || z1)
-		data->color = RED;
+		data->color = COLOR_DISCO;
 	else
+	{
+		
 		data->color = WHIITE;
+	}
 	format3d(&x, &y, z, data->angle);
 	format3d(&x1, &y1, z1, data->angle);
 	x_step = x1 - x;
@@ -91,16 +94,15 @@ void	draw_line(float x, float y, float x1, float y1, t_data *data)
 	{
 		if (x > WIDTH || y > HEIGHT || y < 0 || x < 0)
 			break ;
-		//if (x > 250)
-		my_mlx_pixel_put(data, x, y, data->color);
-			//mlx_pixel_put(data->mlx_ptr, data->mlx_win, x, y, data->color);
+		if (x > MENU_WIDTH)
+			my_mlx_pixel_put(data, x, y, data->color);
 		x += x_step;
 		y += y_step;
 		
 	}
 }
 
-static void	draw_background(t_data *data)
+ void	draw_background(t_data *data)
 {
 	int	*image;
 	int	i;
@@ -122,6 +124,7 @@ void draw(t_data *data)
 	int y;
 
 	draw_background(data);
+	
 	y = 0;
 	while (y < data->map.height)
 	{
@@ -137,6 +140,7 @@ void draw(t_data *data)
 		y++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, 0, 0);
+	print_menu(data);
 }
 
 int	ft_keyyboard(int keycode, t_data *data)
@@ -185,7 +189,7 @@ void	ft_init_mlx(t_data *data)
 	data->shift_y = 0;
 	data->angle = 0.8;
 	
-	//print_menu(data);
+	
 	draw(data);
 	
 	mlx_key_hook(data->mlx_win, ft_keyyboard, data);

@@ -57,7 +57,7 @@ OBJS	 = $(SRCS:.c=.o)
 
 DIR		= ./srcs/
 
-SRCS = $(DIR)main.c $(DIR)ft_parse_map.c $(DIR)malloc_x.c
+SRCS = $(DIR)main.c $(DIR)ft_parse_map.c $(DIR)malloc_x.c $(DIR)rgb.c
 
 
 AR		= ar rc

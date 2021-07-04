@@ -1,5 +1,6 @@
 #ifndef FDF_H
 # define FDF_H
+#include <stdlib.h>
 
 #ifdef DARWIN
 # define UP 125
@@ -78,6 +79,7 @@ typedef struct		s_map
 	int 			height;
 	int 			width;
 	int				**z_matrix;
+	int				**colors;
 	int				z_min;
 	int				z_max;
 	int				z_range;
@@ -112,6 +114,17 @@ typedef struct		s_data
 	int				endian;
 }					t_data;
 
+
+typedef struct	s_rgb
+{
+	int	red;
+	int	green;
+	int	blue;
+}				t_rgb;
+
+int				create_rgb(int r, int g, int b);
+t_rgb			ft_rgb_mult_db(t_rgb rgb, double a);
+t_rgb			ft_rgb_plus_rgb(t_rgb a, t_rgb b);
 
 
 int	ft_parse_map(char *filename, t_map *map);

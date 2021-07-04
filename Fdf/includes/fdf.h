@@ -116,4 +116,6 @@ typedef struct		s_data
 
 int	ft_parse_map(char *filename, t_map *map);
 
+void *malloc_x(size_t size);
+
 #endif

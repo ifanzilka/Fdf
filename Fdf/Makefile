@@ -85,7 +85,7 @@ $(LIBFT):
 		@echo "$(F_YELLOW)START RUN Makefile in libft $(F_NONE)"
 		@$(MAKE) -C $(LIB_DIR)
 		@echo "$(F_YELLOW)END RUN Makefile in libft $(F_NONE)"
-$(NAME_PROJECT): $(OBJS) 
+$(NAME_PROJECT): $(OBJS)  
 		@echo "$(F_CYAN)Compile $(NAME_PROJECT) ...$(F_NONE)"
 		@echo "$(F_GREEN)$(COMPILE) $(F_NONE)"
 		$(CC) $(FLAGS)  -I$(HEADER) $(OBJS) -L. $(LIB_NAME)  $(MINILIBX_A_DIR) $(OPENGL)  -o $(NAME_PROJECT)

@@ -1,18 +1,6 @@
 #ifndef FDF_H
 # define FDF_H
 
-# define UP 125
-# define DOWN 126
-# define LEFT 123
-# define RIGHT 124
-# define PLUS 69
-# define MINUS 78
-# define Z 6
-# define X 7
-# define W 13
-# define S 1
-# define ESC 53
-
 #ifdef DARWIN
 # define UP 125
 # define DOWN 126
@@ -25,9 +13,19 @@
 # define W 13
 # define S 1
 # define ESC 53
-# endif
+#else
 
-#ifdef LINUX
+# define UP 65362
+# define DOWN 65364
+# define LEFT 65361
+# define RIGHT 65363
+# define PLUS 61
+# define MINUS 45
+# define Z 6
+# define X 7
+# define W 13
+# define S 1
+# define ESC 65307
 
 # endif
 

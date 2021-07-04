@@ -1,87 +1,54 @@
 #include "libft.h"
 
-int	mr_cleaner(char **a)
+int	check_end(char **reminder, char **line)
 {
-	if (*a)
-	{
-		free(*a);
-		*a = NULL;
-	}
-	return (0);
-}
-
-char	*check_memder(char *member, char **line)
-{
-	char	*p_n_l;
+	int		i;
 	char	*tmp;
 
-	p_n_l = NULL;
-	if (member)
+	i = 0;
+	while ((*reminder)[i] != 0 && (*reminder)[i] != '\n')
+		i++;
+	if ((*reminder)[i] == '\n')
 	{
-		p_n_l = ft_strchr(member, '\n');
-		if (p_n_l)
-		{
-			*p_n_l++ = '\0';
-			tmp = *line;
-			*line = ft_strjoin(member, "");
-			member = ft_memmove(member, p_n_l, ft_strlen(p_n_l));
-			member[ft_strlen(p_n_l)] = '\0';
-		}
-		else
-		{
-			tmp = *line;
-			*line = ft_strjoin(member, "");
-			ft_bzero(member, ft_strlen(member));
-		}
+		*line = ft_substr(*reminder, 0, i);
+		tmp = *reminder;
+		*reminder = ft_strdup(*reminder + i + 1);
+		free(tmp);
+		return (1);
 	}
 	else
-		*line = ft_calloc(1, 1);
-	return (p_n_l);
-}
-
-int	bufer_nl(char *bufer, char **pointer_n_line, char **member)
-{
-	char	*tmp;
-
-	*pointer_n_line = ft_strchr(bufer, '\n');
-	if (*pointer_n_line)
 	{
-		*(*pointer_n_line) = '\0';
-		*pointer_n_line = *pointer_n_line + 1;
-		if (!(*pointer_n_line == '\0'))
-		{
-			tmp = *member;
-			*member = ft_strjoin(*pointer_n_line, "");
-			mr_cleaner(&tmp);
-		}
+		*line = ft_strdup(*reminder);
+		free(*reminder);
+		*reminder = 0;
 	}
 	return (0);
 }
 
 int	get_next_line(int fd, char **line)
 {
-	static char	*member;
-	char		bufer[BUFFER_SIZE + 1];
-	int			read_len;
-	char		*pointer_n_line;
+	char		buf[21];
+	int			read_bite;
+	static char	*reminder = 0;
 	char		*tmp;
 
-	if (fd < 0 || fd > 256 || !line || BUFFER_SIZE < 1)
-		return (-1);
-	read_len = 1;
-	pointer_n_line = check_memder(member, line);
-	while (!pointer_n_line && read_len)
+	read_bite = 1;
+	while (read_bite)
 	{
-		read_len = read(fd, bufer, BUFFER_SIZE);
-		if (read_len == -1)
+		read_bite = read(fd, buf, 20);
+		if (read_bite < 0 || !line)
 			return (-1);
-		bufer[read_len] = '\0';
-		bufer_nl(&bufer[0], &pointer_n_line, &member);
-		tmp = *line;
-		*line = ft_strjoin(*line, bufer);
-		mr_cleaner(&tmp);
+		buf[read_bite] = 0;
+		if (reminder)
+		{
+			tmp = reminder;
+			reminder = ft_strjoin(reminder, buf);
+			free(tmp);
+		}
+		else
+			reminder = ft_strdup(buf);
+		if (ft_strchr(reminder, '\n'))
+			break ;
 	}
-	if (read_len == 0)
-		return (mr_cleaner(&member));
-	return (1);
+	return (check_end(&reminder, line) || read_bite || reminder);
 }

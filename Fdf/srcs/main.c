@@ -79,6 +79,11 @@ void	draw_line(float x, float y, float x1, float y1, t_data *data)
 		
 		data->color = WHIITE;
 	}
+	printf("x: %f y: %f\n", x, y);
+	// if (data->map.colors[(int)y][(int)x] != -1)
+	// {
+	// 	data->color = data->map.colors[(int)y][(int)x];
+	// }
 	format3d(&x, &y, z, data->angle);
 	format3d(&x1, &y1, z1, data->angle);
 	x_step = x1 - x;

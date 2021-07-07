@@ -63,6 +63,13 @@ enum error
 	err_open = 2
 };
 
+typedef enum
+{
+	false,
+	true
+}	t_bool;
+
+
 typedef struct		s_camera
 {
 	int				zoom;
@@ -128,6 +135,9 @@ t_rgb			ft_rgb_plus_rgb(t_rgb a, t_rgb b);
 
 
 int	ft_parse_map(char *filename, t_map *map);
+int	ft_atoi_base(const char *str, int base);
+int map_min_z(t_map *map);
+int map_max_z(t_map *map);
 
 void *malloc_x(size_t size);
 

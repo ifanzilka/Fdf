@@ -79,7 +79,7 @@ void	draw_line(float x, float y, float x1, float y1, t_data *data)
 		
 		data->color = WHIITE;
 	}
-	printf("x: %f y: %f\n", x, y);
+	//printf("x: %f y: %f\n", x, y);
 	// if (data->map.colors[(int)y][(int)x] != -1)
 	// {
 	// 	data->color = data->map.colors[(int)y][(int)x];
@@ -225,6 +225,9 @@ int main(int argc, char **argv)
 		}
 		close(fd);
 		ft_parse_map(argv[1], &data.map);
+		data.map.z_max = map_max_z(&data.map);
+		data.map.z_min = map_min_z(&data.map);
+		
 		// int i;
 		// int j;
 

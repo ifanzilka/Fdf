@@ -4,30 +4,6 @@
 #include "mlx.h"
 #include "math.h"
 
-void	print_menu(t_data *data)
-{
-	int		y;
-	void	*mlx;
-	void	*win;
-
-	y = 0;
-	mlx = data->mlx_ptr;
-	win = data->mlx_win;
-	mlx_string_put(mlx, win, 65, y += 20, TEXT_COLOR, "How to Use");
-	mlx_string_put(mlx, win, 15, y += 35, TEXT_COLOR, "Zoom: Scroll or +/-");
-	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Move: Arrows");
-	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Flatten: </>");
-	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Rotate: Press & Move");
-	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Rotate:");
-	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "X-Axis - 2/8");
-	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Y-Axis - 4/6");
-	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Z-Axis - 1(3)/7(9)");
-	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Projection");
-	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "ISO: I Key");
-	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Parallel: P Key");
-}
-
-
 float max(float a, float b)
 {
 	if (a > b)
@@ -68,10 +44,10 @@ void	draw_line(float x, float y, float x1, float y1, t_data *data)
 	
 	z = data->map.z_matrix[(int)y][(int)x];
 	z1 = data->map.z_matrix[(int)y1][(int)x1];
-	x *= data->zoom;
-	y *= data->zoom;
-	x1 *= data->zoom;
-	y1 *= data->zoom;
+	x *= data->camera.zoom;
+	y *= data->camera.zoom;
+	x1 *= data->camera.zoom;
+	y1 *= data->camera.zoom;
 	if (z || z1)
 		data->color = COLOR_DISCO;
 	else
@@ -84,14 +60,16 @@ void	draw_line(float x, float y, float x1, float y1, t_data *data)
 	// {
 	// 	data->color = data->map.colors[(int)y][(int)x];
 	// }
-	format3d(&x, &y, z, data->angle);
-	format3d(&x1, &y1, z1, data->angle);
+	
+	format3d(&x, &y, z, data->camera.angle);
+	format3d(&x1, &y1, z1, data->camera.angle);
 	x_step = x1 - x;
  	y_step = y1 - y;
-	x += data->shift_x;
-	y += data->shift_y;
-	x1 += data->shift_x;
-	y1 += data->shift_y;
+	 
+	x += data->camera.shift_x;
+	y += data->camera.shift_y;
+	x1 += data->camera.shift_x;
+	y1 += data->camera.shift_y;
 	maxi = max(mod(x_step), mod(y_step));
 	x_step /= maxi;
 	y_step /= maxi;
@@ -155,21 +133,21 @@ int	ft_keyyboard(int keycode, t_data *data)
 	if (keycode == ESC)
 		exit(0);
 	if (keycode == LEFT)	
-		data->shift_x -=10;
+		data->camera.shift_x -=10;
 	if (keycode == RIGHT)
-		data->shift_x +=10;
+		data->camera.shift_x +=10;
 	if (keycode == UP)
-		data->shift_y +=10;
+		data->camera.shift_y +=10;
 	if (keycode == DOWN)
-		data->shift_y -=10;
+		data->camera.shift_y -=10;
 	if (keycode == PLUS)
-		data->zoom +=5;
+		data->camera.zoom +=5;
 	if (keycode == MINUS)
-		data->zoom -=5;
+		data->camera.zoom -=5;
 	if (keycode == Z)
-		data->angle -= 0.1;
+		data->camera.angle -= 0.1;
 	if (keycode == X)
-		data->angle += 0.1;		
+		data->camera.angle += 0.1;		
 	mlx_clear_window(data->mlx_ptr, data->mlx_win);
 	draw(data);
 	return (0);
@@ -189,10 +167,10 @@ void	ft_init_mlx(t_data *data)
 	data->img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
 	data->data_addr = mlx_get_data_addr(data->img, &(data->bits_per_pixel),
 											&(data->size_line), &(data->endian));
-	data->zoom = ZOOM;
-	data->shift_x = 0;
-	data->shift_y = 0;
-	data->angle = 0.8;
+	data->camera.zoom = ZOOM;
+	data->camera.shift_x = 0;
+	data->camera.shift_y = 0;
+	data->camera.angle = 0.8;
 	
 	
 	draw(data);
@@ -207,9 +185,7 @@ int main(int argc, char **argv)
 {
 	t_data 	data;
 	int		fd;
-	//char 	*line;
 	
-	//line = NULL;
 	if (argc < 2)
 	{
 		ft_putstr_fd("Please, Usage: ./fdf [File]\n", 1);

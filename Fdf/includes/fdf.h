@@ -70,16 +70,6 @@ typedef enum
 }	t_bool;
 
 
-typedef struct		s_camera
-{
-	int				zoom;
-	double			alpha;
-	double			beta;
-	double			gamma;
-	float			z_divisor;
-	int				x_offset;
-	int				y_offset;
-}					t_camera;
 
 typedef struct		s_map
 {
@@ -92,25 +82,34 @@ typedef struct		s_map
 	int				z_range;
 }					t_map;
 
-typedef struct		s_mouse
+// typedef struct		s_mouse
+// {
+// 	char			is_pressed;
+// 	int				x;
+// 	int				y;
+// 	int				previous_x;
+// 	int				previous_y;
+// }					t_mouse;
+
+typedef struct			s_camera
 {
-	char			is_pressed;
-	int				x;
-	int				y;
-	int				previous_x;
-	int				previous_y;
-}					t_mouse;
+	//t_projection		projection;
+	int					zoom;
+	double				alpha;
+	double				beta;
+	double				gamma;
+	float				z_divisor;
+	float				angle;
+	int					shift_x;
+	int					shift_y;
+}						t_camera;
 
 typedef struct		s_data
 {
 	t_map			map;
-	t_mouse			mouse;
+	//t_mouse			mouse;
 	t_camera		camera;
-	int				zoom;
 	int 			color;
-	int				shift_x;
-	int				shift_y;
-	float			angle;
 
 	void			*mlx_win;
 	void			*mlx_ptr;
@@ -140,5 +139,11 @@ int map_min_z(t_map *map);
 int map_max_z(t_map *map);
 
 void *malloc_x(size_t size);
+
+
+
+
+//
+void	print_menu(t_data *data);
 
 #endif

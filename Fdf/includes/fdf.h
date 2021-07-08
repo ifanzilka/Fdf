@@ -128,6 +128,17 @@ typedef struct	s_rgb
 	int	blue;
 }				t_rgb;
 
+
+typedef struct	s_point
+{
+	int			x;
+	int			y;
+	int			z;
+	int			color;
+}				t_point;
+
+
+
 int				create_rgb(int r, int g, int b);
 t_rgb			ft_rgb_mult_db(t_rgb rgb, double a);
 t_rgb			ft_rgb_plus_rgb(t_rgb a, t_rgb b);

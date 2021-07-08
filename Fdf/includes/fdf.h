@@ -157,4 +157,13 @@ void *malloc_x(size_t size);
 //
 void	print_menu(t_data *data);
 
+
+/* Draw */
+void	draw(t_data *data);
+
+
+/* Projection */
+
+t_point		project(t_point p, t_data *data);
+
 #endif

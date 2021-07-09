@@ -171,4 +171,19 @@ t_point		project(t_point p, t_data *data);
 double	max(double a, double b);
 int 	mod(int i);
 
+
+/* Points */
+
+t_point direction(t_point f, t_point s);
+t_point	new_point(int x, int y, t_data *data);
+
+/* Mlx fun */
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+
+/* Colors */
+
+int	get_color(t_point current, t_point start, t_point end, t_point delta);
+int	get_default_color(int z, t_map *map);
+
 #endif

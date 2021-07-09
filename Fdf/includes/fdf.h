@@ -1,50 +1,11 @@
 #ifndef FDF_H
 # define FDF_H
 #include <stdlib.h>
-
-#ifdef DARWIN
-# define UP 125
-# define DOWN 126
-# define LEFT 123
-# define RIGHT 124
-# define PLUS 69
-# define MINUS 78
-# define Z 6
-# define X 7
-# define W 13
-# define S 1
-# define ESC 53
-# define MOUSE_UP 5
-# define MOUSE_DOWN 4
-# define MOUSE_LEFT 1
-# define MOUSE_RIGHT 2
-# define MOUSE_MIDDLE 3
-
-#else
-
-# define UP 65364
-# define DOWN 65362
-# define LEFT 65361
-# define RIGHT 65363
-# define PLUS 61
-# define MINUS 45
-# define Z 6
-# define X 7
-# define W 13
-# define S 1
-# define ESC 65307
-# define MOUSE_UP 5
-# define MOUSE_DOWN 4
-# define MOUSE_LEFT 1
-# define MOUSE_RIGHT 2
-# define MOUSE_MIDDLE 3
-
-# endif
+#include "keycode.h"
 
 
 #ifndef COLOR_H
 # define COLOR_H
-
 # define TEXT_COLOR			0xEAEAEA
 # define BACKGROUND			0x222223
 # define MENU_BACKGROUND	0x1E1E1E
@@ -53,6 +14,8 @@
 # define COLOR_FLAMINGO		0xEC4B27
 # define COLOR_JAFFA		0xEF8633
 # define COLOR_SAFFRON		0xF3AF3D
+# define WHIITE 			0xffffff
+# define RED 				0xe80c0c
 
 #endif
 
@@ -60,9 +23,6 @@
 # define NAME_PROGRAMM "Fdf"
 # define WIDTH 1920
 # define HEIGHT 1080 
-# define WHIITE 0xffffff
-# define RED 0xe80c0c
-# define ZOOM 20
 
 typedef enum
 {

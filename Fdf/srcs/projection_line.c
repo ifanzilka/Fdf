@@ -51,7 +51,6 @@ t_point		project(t_point p, t_data *data)
 	rotate_z(&p.x, &p.y, data->camera.gamma);
 	// if (fdf->camera->projection == ISO)
 	// 	iso(&p.x, &p.y, p.z);
-
 	p.x += (WIDTH - MENU_WIDTH) / 2 + data->camera.shift_x + MENU_WIDTH;
 	p.y += (HEIGHT + data->map.height * data->camera.zoom) / 2
 												+ data->camera.shift_y;

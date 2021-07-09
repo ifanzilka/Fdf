@@ -78,19 +78,6 @@ int	get_color(t_point current, t_point start, t_point end, t_point delta)
 	return ((red << 16) | (green << 8) | blue);
 }
 
-double max(double a, double b)
-{
-	if (a > b)
-		return (a);
-	return (b); 
-}
-
-int mod(int i)
-{
-	if (i > 0)
-		return i;
-	return (i * (-1));
-}
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -117,6 +104,8 @@ void	draw_background(t_data *data)
 	}
 }
 
+#include <stdio.h>
+
 t_point	new_point(int x, int y, t_data *data)
 {
 	t_point	point;
@@ -125,13 +114,32 @@ t_point	new_point(int x, int y, t_data *data)
 	point.y = y;
 	point.z = data->map.z_matrix[y][x];
 	if (data->map.colors[y][x] != -1)
+	{
+		//point.color = get_default_color(point.z, &data->map);
 		point.color = data->map.colors[y][x];
+		//printf("color: %d\n", point.color);
+	}	
 	else
 		point.color = get_default_color(point.z, &data->map);
 	return (point);
 }
 
-void	put_pixel(t_data *fdf, int x, int y, int color)
+t_point direction(t_point f, t_point s)
+{
+	t_point vec;
+
+	if (f.x < s.x)
+		vec.x = 1;
+	else
+		vec.x = -1;
+	if (f.y < s.y)
+		vec.y = 1;
+	else
+		vec.y = -1;
+	return (vec);
+}
+
+static void	put_pixel(t_data *fdf, int x, int y, int color)
 {
 	int		i;
 
@@ -144,43 +152,25 @@ void	put_pixel(t_data *fdf, int x, int y, int color)
 	}
 }
 
-t_point direction(t_point f, t_point s)
-{
-	t_point vec;
-
-	if (f.x < s.x)
-		vec.x = 1;
-	else
-		vec.x = -1;
-	
-	if (f.y < s.y)
-		vec.y = 1;
-	else
-		vec.y = -1;
-	return (vec);
-}
-
-
 void draw_line(t_point f, t_point s, t_data *data)
 {
 	t_point	delta;
 	t_point	cur;
-	t_point	vec;
+	t_point	vec;	
 	int		coord[2];
-
-
+	
 	cur = f;
 	delta.x = mod(s.x - f.x);
 	delta.y = mod(s.y - f.y);
-	vec = direction(f, s); 
+	vec = direction(f, s);
 	coord[0] = delta.x - delta.y;
-
-	while (cur.x != s.x || cur.y != s.y )
+	while (cur.x != s.x || cur.y != s.y)
 	{
 		if (cur.x >= WIDTH || cur.y >= HEIGHT || cur.y < 0 || cur.x < 0)
- 			break ;
-		put_pixel(data, cur.x, cur.y, get_color(cur, f, s, delta));	
-		//my_mlx_pixel_put(data, cur.x, cur.y, RED);
+ 			break;
+		if (cur .x > MENU_WIDTH)
+			put_pixel(data, cur.x, cur.y, get_color(cur, f, s, delta));
+			//my_mlx_pixel_put(data, cur.x, cur.y, get_color(cur, f, s, delta));
 		coord[1] = coord[0] * 2;
 		if (coord[1] > -delta.y) 
 		{
@@ -194,7 +184,6 @@ void draw_line(t_point f, t_point s, t_data *data)
 		}
 	}
 }
-
 
 void draw(t_data *data)
 {
@@ -219,6 +208,6 @@ void draw(t_data *data)
 		y++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, 0, 0);
-	//print_menu(data);
+	print_menu(data);
 }
 

@@ -7,7 +7,7 @@ int	map_max_z(t_map *map)
 	int	i;
 	int	j;
 
-	max = -10000;
+	max = map->z_matrix[0][0];
 	i = 0;
 	while (i <= map->height - 1)
 	{
@@ -29,7 +29,7 @@ int	map_min_z(t_map *map)
 	int	i;
 	int	j;
 
-	min = 10000;
+	min = map->z_matrix[0][0];
 	i = 0;
 	while (i < map->height - 1)
 	{

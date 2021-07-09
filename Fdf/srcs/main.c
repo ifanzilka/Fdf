@@ -74,6 +74,10 @@ void	ft_init_mlx(t_data *data)
 	mlx_hook(data->mlx_win, 17, 0L, ft_close_win, data);
 	mlx_loop(data->mlx_ptr);
 }
+# include <string.h>
+# define FT_UINT_MAX	((unsigned)(~0L))
+# define FT_INT_MAX		((int)(FT_UINT_MAX >> 1))
+# define FT_INT_MIN		((int)(~FT_INT_MAX))
 
 int main(int argc, char **argv)
 {

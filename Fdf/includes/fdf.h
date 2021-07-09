@@ -166,4 +166,9 @@ void	draw(t_data *data);
 
 t_point		project(t_point p, t_data *data);
 
+/* Math Utils */
+
+double	max(double a, double b);
+int 	mod(int i);
+
 #endif

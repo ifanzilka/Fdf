@@ -68,7 +68,7 @@ static void	fill_matrix(int *line_i, int num_i, char *line, t_map *map)
 		line_i[i] = ft_atoi(nums[i]);
 		sub = ft_strchr(nums[i], ',');
 		if (sub != NULL)
-			map->colors[num_i][i] = ft_atoi_base(sub, 16);
+			map->colors[num_i][i] = ft_atoi_base(++sub, 16);
 		else
 			map->colors[num_i][i] = -1;
 		i++;

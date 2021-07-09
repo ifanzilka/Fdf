@@ -2,6 +2,7 @@
 	"files.associations": {
 		"fdf.h": "c",
 		"__locale": "c",
-		"stdlib.h": "c"
+		"stdlib.h": "c",
+		"mlx.h": "c"
 	}
 }

@@ -14,6 +14,12 @@
 # define W 13
 # define S 1
 # define ESC 53
+# define MOUSE_UP 5
+# define MOUSE_DOWN 4
+# define MOUSE_LEFT 1
+# define MOUSE_RIGHT 2
+# define MOUSE_MIDDLE 3
+
 #else
 
 # define UP 65364
@@ -27,6 +33,11 @@
 # define W 13
 # define S 1
 # define ESC 65307
+# define MOUSE_UP 5
+# define MOUSE_DOWN 4
+# define MOUSE_LEFT 1
+# define MOUSE_RIGHT 2
+# define MOUSE_MIDDLE 3
 
 # endif
 
@@ -84,14 +95,14 @@ typedef struct		s_map
 	int				z_range;
 }					t_map;
 
-// typedef struct		s_mouse
-// {
-// 	char			is_pressed;
-// 	int				x;
-// 	int				y;
-// 	int				previous_x;
-// 	int				previous_y;
-// }					t_mouse;
+typedef struct		s_mouse
+{
+	char			is_pressed;
+	int				x;
+	int				y;
+	int				previous_x;
+	int				previous_y;
+}					t_mouse;
 
 typedef struct			s_camera
 {
@@ -109,7 +120,7 @@ typedef struct			s_camera
 typedef struct		s_data
 {
 	t_map			map;
-	//t_mouse			mouse;
+	t_mouse			mouse;
 	t_camera		camera;
 	int 			color;
 
@@ -165,7 +176,9 @@ void *malloc_x(size_t size);
 
 
 
-//
+/* Keyboard */
+
+int	ft_keyyboard(int keycode, t_data *data);
 
 
 
@@ -181,6 +194,7 @@ t_point		project(t_point p, t_data *data);
 
 double	max(double a, double b);
 int 	mod(int i);
+int 	ft_min(int a , int b);
 
 
 /* Points */
@@ -190,8 +204,11 @@ t_point	new_point(int x, int y, t_data *data);
 
 /* Mlx fun */
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		ft_close_win(t_data *data);
+void	ft_init_mlx(t_data *data);
 
 
-
+/* Camera */
+void	zooming(int code, t_data *data);
 
 #endif

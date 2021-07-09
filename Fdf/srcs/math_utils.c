@@ -13,3 +13,10 @@ int	mod(int i)
 		return (i);
 	return (i * (-1));
 }
+
+int ft_min(int a , int b)
+{
+	if (a < b)
+		return (a);
+	return (b);	
+}

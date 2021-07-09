@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-void *malloc_x(size_t size)
+void	*malloc_x(size_t size)
 {
 	void	*ptr;
 

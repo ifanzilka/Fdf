@@ -1,7 +1,7 @@
 #include "fdf.h"
 #include "math.h"
 
-static void	rotate_x(int *y, int *z, double alpha)
+static void	rotate_x(double *y, double *z, double alpha)
 {
 	int previous_y;
 
@@ -14,7 +14,7 @@ static void	rotate_x(int *y, int *z, double alpha)
 ** Rotate coordinate by y axis
 */
 
-static void	rotate_y(int *x, int *z, double beta)
+static void	rotate_y(double *x, double *z, double beta)
 {
 	int previous_x;
 
@@ -27,7 +27,7 @@ static void	rotate_y(int *x, int *z, double beta)
 ** Rotate coordinate by z axis
 */
 
-static void	rotate_z(int *x, int *y, double gamma)
+static void	rotate_z(double *x, double *y, double gamma)
 {
 	int previous_x;
 	int previous_y;

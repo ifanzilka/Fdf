@@ -131,9 +131,9 @@ typedef struct	s_rgb
 
 typedef struct	s_point
 {
-	int			x;
-	int			y;
-	int			z;
+	double			x;
+	double			y;
+	double			z;
 	int			color;
 }				t_point;
 

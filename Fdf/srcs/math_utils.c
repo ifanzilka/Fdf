@@ -1,15 +1,15 @@
 #include "fdf.h"
 
-double max(double a, double b)
+double	max(double a, double b)
 {
 	if (a > b)
 		return (a);
-	return (b); 
+	return (b);
 }
 
-int mod(int i)
+int	mod(int i)
 {
 	if (i > 0)
-		return i;
+		return (i);
 	return (i * (-1));
 }

@@ -4,10 +4,6 @@
 #include "mlx.h"
 #include "math.h"
 
-
-
-
-
 int	ft_keyyboard(int keycode, t_data *data)
 {
 	(void) data;

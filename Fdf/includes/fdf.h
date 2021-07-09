@@ -32,13 +32,11 @@
 
 
 #ifndef COLOR_H
-
 # define COLOR_H
 
 # define TEXT_COLOR			0xEAEAEA
 # define BACKGROUND			0x222223
 # define MENU_BACKGROUND	0x1E1E1E
-
 # define COLOR_DISCO		0x9A1F6A
 # define COLOR_BRICK_RED	0xC2294E
 # define COLOR_FLAMINGO		0xEC4B27
@@ -55,7 +53,11 @@
 # define RED 0xe80c0c
 # define ZOOM 20
 
-
+typedef enum
+{
+	ISO,
+	PARALLEL
+}	t_projection;
 
 enum error
 {
@@ -93,7 +95,7 @@ typedef struct		s_map
 
 typedef struct			s_camera
 {
-	//t_projection		projection;
+	t_projection		projection;
 	int					zoom;
 	double				alpha;
 	double				beta;
@@ -138,11 +140,20 @@ typedef struct	s_point
 }				t_point;
 
 
+/* Rgb Functions */
 
-int				create_rgb(int r, int g, int b);
+int 			ft_trgbtoint(t_rgb rgb);
+int				ft_create_rgb(int r, int g, int b);
 t_rgb			ft_rgb_mult_db(t_rgb rgb, double a);
 t_rgb			ft_rgb_plus_rgb(t_rgb a, t_rgb b);
+t_rgb 			ft_create_trgb(int color);
 
+/* Colors */
+
+int	get_color(t_point current, t_point start, t_point end, t_point delta);
+int	get_default_color(int z, t_map *map);
+
+/* Map fun */
 
 int	ft_parse_map(char *filename, t_map *map);
 int	ft_atoi_base(const char *str, int base);
@@ -155,12 +166,12 @@ void *malloc_x(size_t size);
 
 
 //
-void	print_menu(t_data *data);
+
 
 
 /* Draw */
 void	draw(t_data *data);
-
+void	print_menu(t_data *data);
 
 /* Projection */
 
@@ -181,9 +192,6 @@ t_point	new_point(int x, int y, t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 
-/* Colors */
 
-int	get_color(t_point current, t_point start, t_point end, t_point delta);
-int	get_default_color(int z, t_map *map);
 
 #endif

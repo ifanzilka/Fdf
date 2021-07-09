@@ -1,6 +1,5 @@
 #include "fdf.h"
 
-
 /*
 ** Get percent
 */
@@ -12,9 +11,10 @@ double	percent(int start, int end, int current)
 
 	placement = current - start;
 	distance = end - start;
-	return ((distance == 0) ? 1.0 : (placement / distance));
+	if (distance == 0)
+		return (1.0);
+	return (placement / distance);
 }
-
 
 /*
 ** Get color from default palette. Color depends on altitude
@@ -42,9 +42,17 @@ int	get_default_color(int z, t_map *map)
 ** This function is needed to create linear gradient.
 */
 
-int	get_light(int start, int end, double percentage)
+int	get_mix_color(int start, int end, double percent)
 {
-	return ((int)((1 - percentage) * start + percentage * end));
+	t_rgb	st;
+	t_rgb	en;
+	t_rgb	new_color;
+
+	st = ft_create_trgb(start);
+	en = ft_create_trgb(end);
+	new_color = ft_rgb_mult_db(st, (1 - percent));
+	new_color = ft_rgb_plus_rgb(new_color, ft_rgb_mult_db(en, percent));
+	return (ft_trgbtoint(new_color));
 }
 
 /*
@@ -54,9 +62,6 @@ int	get_light(int start, int end, double percentage)
 
 int	get_color(t_point current, t_point start, t_point end, t_point delta)
 {
-	int		red;
-	int		green;
-	int		blue;
 	double	percentage;
 
 	if (current.color == end.color)
@@ -65,14 +70,5 @@ int	get_color(t_point current, t_point start, t_point end, t_point delta)
 		percentage = percent(start.x, end.x, current.x);
 	else
 		percentage = percent(start.y, end.y, current.y);
-	red = get_light((start.color >> 16) & 0xFF,
-					(end.color >> 16) & 0xFF,
-					percentage);
-	green = get_light((start.color >> 8) & 0xFF,
-					(end.color >> 8) & 0xFF,
-					percentage);
-	blue = get_light(start.color & 0xFF,
-					end.color & 0xFF,
-					percentage);
-	return ((red << 16) | (green << 8) | blue);
+	return (get_mix_color(start.color, end.color, percentage));
 }

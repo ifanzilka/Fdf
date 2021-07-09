@@ -1,6 +1,8 @@
 #include "fdf.h"
 #include "mlx.h"
 
+/* In backgroung color */
+
 void	draw_background(t_data *data)
 {
 	int	*image;
@@ -18,33 +20,37 @@ void	draw_background(t_data *data)
 	}
 }
 
+/* Funcrion in draw line in two point*/
+
 void	draw_line(t_point a, t_point b, t_data *data)
 {
 	t_point	a_;
 	t_point	delta;
 	t_point	cur;
-	double	step[3];
+	double	step_x_y_max[3];
 
 	a_ = a;
 	delta.x = mod(a.x - b.x);
 	delta.y = mod(a.y - b.y);
 	cur.x = a.x;
 	cur.y = a.y;
-	step[0] = b.x - a.x;
-	step[1] = b.y - a.y;
-	step[2] = max(mod(step[0]), mod(step[1]));
-	step[0] /= step[2];
-	step[1] /= step[2];
+	step_x_y_max[0] = b.x - a.x;
+	step_x_y_max[1] = b.y - a.y;
+	step_x_y_max[2] = max(mod(step_x_y_max[0]), mod(step_x_y_max[1]));
+	step_x_y_max[0] /= step_x_y_max[2];
+	step_x_y_max[1] /= step_x_y_max[2];
 	while ((int)(cur.x - b.x) || (int)(cur.y - b.y))
 	{
 		if (cur.x >= WIDTH || cur.y >= HEIGHT || cur.x < 0 || cur.y < 0)
 			break ;
 		if (cur.x > MENU_WIDTH)
 			my_mlx_pixel_put(data, cur.x, cur.y, get_color(cur, a_, b, delta));
-		cur.x += step[0];
-		cur.y += step[1];
+		cur.x += step_x_y_max[0];
+		cur.y += step_x_y_max[1];
 	}
 }
+
+/* Cicle for all map*/
 
 void	draw(t_data *data)
 {

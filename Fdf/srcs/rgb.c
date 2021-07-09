@@ -17,9 +17,24 @@
 ** res(100110111111000001100100)
 */
 
-int		create_rgb(int r, int g, int b)
+t_rgb	ft_create_trgb(int color)
+{
+	t_rgb	rgb;
+
+	rgb.red = (color >> 16) & 0xFF;
+	rgb.green = (color >> 8) & 0xFF;
+	rgb.blue = (color) & 0xFF;
+	return (rgb);
+}
+
+int	ft_create_rgb(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
+}
+
+int 	ft_trgbtoint(t_rgb rgb)
+{
+	return (rgb.red << 16 | rgb.green << 8 | rgb.blue);
 }
 
 t_rgb	ft_rgb_mult_db(t_rgb rgb, double a)

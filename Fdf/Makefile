@@ -58,7 +58,7 @@ OBJS	 = $(SRCS:.c=.o)
 DIR		= ./srcs/
 
 SRCS = $(DIR)main.c $(DIR)ft_parse_map.c $(DIR)ft_parse_map2.c $(DIR)malloc_x.c  $(DIR)utils_atoi_base.c\
-		$(DIR)menu.c $(DIR)draw.c $(DIR)projection_line.c $(DIR)math_utils.c $(DIR)color_fun.c $(DIR)mlx_fun.c  $(DIR)points.c $(DIR)rgb.c $(DIR)ft_keyboard.c $(DIR)camera.c
+		$(DIR)menu.c $(DIR)draw.c $(DIR)projection_line.c $(DIR)math_utils.c $(DIR)color_fun.c $(DIR)mlx_fun.c  $(DIR)points.c $(DIR)rgb.c $(DIR)ft_keyboard.c $(DIR)camera.c $(DIR)mouse_event.c
 
 
 AR		= ar rc

@@ -18,6 +18,8 @@
 # define MOUSE_LEFT 1
 # define MOUSE_RIGHT 2
 # define MOUSE_MIDDLE 3
+# define DIVIZOR_MINUS 43
+# define DIVIZOR_PLUS 47
 
 #else
 
@@ -37,6 +39,8 @@
 # define MOUSE_LEFT 1
 # define MOUSE_RIGHT 2
 # define MOUSE_MIDDLE 3
+# define DIVIZOR_MINUS 43
+# define DIVIZOR_PLUS 47
 
 # endif
 

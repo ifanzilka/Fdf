@@ -57,7 +57,7 @@ t_point	project(t_point p, t_data *data)
 {
 	p.x *= data->camera.zoom;
 	p.y *= data->camera.zoom;
-	p.z *= data->camera.zoom / data->camera.z_divisor;
+	p.z *= data->camera.zoom / data->map.z_divisor;
 	p.x -= (data->map.width * data->camera.zoom) / 2;
 	p.y -= (data->map.height * data->camera.zoom) / 2;
 	rotate_x(&p.y, &p.z, data->camera.alpha);

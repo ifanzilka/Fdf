@@ -53,6 +53,7 @@ typedef struct		s_map
 	int				z_min;
 	int				z_max;
 	int				z_range;
+	float			z_divisor;
 }					t_map;
 
 typedef struct		s_mouse
@@ -71,7 +72,6 @@ typedef struct			s_camera
 	double				alpha;
 	double				beta;
 	double				gamma;
-	float				z_divisor;
 	float				angle;
 	int					shift_x;
 	int					shift_y;
@@ -170,5 +170,12 @@ void	ft_init_mlx(t_data *data);
 
 /* Camera */
 void	zooming(int code, t_data *data);
+
+/* Mouse Events */
+
+int			mouse_move(int x, int y, void *param);
+int			mouse_release(int button, int x, int y, void *param);
+int			mouse_press(int button, int x, int y, void *param);
+
 
 #endif

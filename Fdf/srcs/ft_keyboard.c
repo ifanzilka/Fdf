@@ -22,8 +22,11 @@ int	ft_keyyboard(int keycode, t_data *data)
 		data->camera.beta += 0.1;
 	if (keycode == X)
 		data->camera.beta -= 0.1;
-			
-	mlx_clear_window(data->mlx_ptr, data->mlx_win);
+	if (keycode == DIVIZOR_MINUS)
+		data->map.z_divisor -= 0.1;
+	if (keycode == DIVIZOR_PLUS)
+		data->map.z_divisor += 0.1;				
+	//mlx_clear_window(data->mlx_ptr, data->mlx_win);
 	draw(data);
 	return (0);
 }

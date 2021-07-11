@@ -62,6 +62,8 @@ int	ft_keyyboard(int code, t_data *data)
 		divizor_map(code, data);
 	if (code == I || code == P)
 		projection(code, data);
+	if (ft_is_projection(code))
+		ft_keyyboard2(code, data);
 	draw(data);
 	print_menu(data);
 	return (0);

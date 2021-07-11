@@ -49,8 +49,8 @@ static void	iso(double *x, double *y, double z)
 
 	previous_x = *x;
 	previous_y = *y;
-	*x = (previous_x - previous_y) * cos(0.523599);
-	*y = -z + (previous_x + previous_y) * sin(0.523599);
+	*x = ((int)previous_x - (int)previous_y) * cos(0.523599);
+	*y = -z + ((int)previous_x + (int)previous_y) * sin(0.523599);
 }
 
 t_point	project(t_point p, t_data *data)

@@ -2,11 +2,11 @@
 #include <fdf.h>
 #include <fcntl.h>
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data 	data;
+	t_data	data;
 	int		fd;
-	
+
 	if (argc < 2)
 	{
 		ft_putstr_fd("Please, Usage: ./fdf [File]\n", 1);

@@ -1,6 +1,7 @@
 #include "fdf.h"
 #include "mlx.h"
 #include "math.h"
+#include "libft.h"
 
 /* In backgroung color */
 
@@ -13,12 +14,10 @@ void	draw_background(t_data *data)
 	i = 0;
 	while (i < HEIGHT * WIDTH)
 	{
-		// if (i % WIDTH < MENU_WIDTH)
-		// 	image[i] = MENU_BACKGROUND;
-		// else
-		// 	image[i] = BACKGROUND;
-		if (i % WIDTH >= MENU_WIDTH)
-			image[i] = BACKGROUND;	
+		if (i % WIDTH < MENU_WIDTH)
+			image[i] = MENU_BACKGROUND;
+		else
+			image[i] = BACKGROUND;
 		i++;
 	}
 }
@@ -53,24 +52,6 @@ void	draw_line(t_point a, t_point b, t_data *data)
 	}
 }
 
-void 	first_draw(t_data *data)
-{
-	int	*image;
-	int	i;
-
-	image = (int *)(data->data_addr);
-	i = 0;
-	while (i < HEIGHT * WIDTH)
-	{
-		if (i % WIDTH < MENU_WIDTH)
-			image[i] = MENU_BACKGROUND;
-		else
-			image[i] = BACKGROUND;	
-		i++;
-	}
-	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, 0, 0);
-}
-
 /* Cicle for all map*/
 
 void	draw(t_data *data)
@@ -78,12 +59,15 @@ void	draw(t_data *data)
 	int	x;
 	int	y;
 
+	data->img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	data->data_addr = mlx_get_data_addr(data->img, &(data->bits_per_pixel),
+			&(data->size_line), &(data->endian));
 	draw_background(data);
 	y = 0;
 	while (y < data->map.height)
 	{
-		x = 0;
-		while (x < data->map.width)
+		x = -1;
+		while (++x < data->map.width)
 		{
 			if (x != data->map.width - 1)
 				draw_line(project(new_point(x, y, data), data),
@@ -91,10 +75,10 @@ void	draw(t_data *data)
 			if (y != data->map.height - 1)
 				draw_line(project(new_point(x, y, data), data),
 					project(new_point(x, y + 1, data), data), data);
-			x++;
 		}
 		y++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, 0, 0);
 	print_menu(data);
+	mlx_destroy_image(data->mlx_ptr, data->img);
 }

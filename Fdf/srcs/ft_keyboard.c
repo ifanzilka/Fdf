@@ -38,7 +38,7 @@ static void	divizor_map(int code, t_data *data)
 
 static void	projection(int code, t_data *data)
 {
-	if (code == P)
+	if (code == I)
 		data->camera.projection = ISO;
 	if (code == P)
 	{
@@ -51,7 +51,6 @@ static void	projection(int code, t_data *data)
 
 int	ft_keyyboard(int code, t_data *data)
 {
-	printf("Keycode: %d\n", code);
 	if (code == ESC)
 		exit(0);
 	if (code == LEFT || code == RIGHT || code == UP || code == DOWN)

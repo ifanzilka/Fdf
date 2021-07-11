@@ -1,5 +1,6 @@
 #include "fdf.h"
 #include "mlx.h"
+#include "math.h"
 
 /* In backgroung color */
 
@@ -12,10 +13,12 @@ void	draw_background(t_data *data)
 	i = 0;
 	while (i < HEIGHT * WIDTH)
 	{
-		if (i % WIDTH < MENU_WIDTH)
-			image[i] = MENU_BACKGROUND;
-		else
-			image[i] = BACKGROUND;
+		// if (i % WIDTH < MENU_WIDTH)
+		// 	image[i] = MENU_BACKGROUND;
+		// else
+		// 	image[i] = BACKGROUND;
+		if (i % WIDTH >= MENU_WIDTH)
+			image[i] = BACKGROUND;	
 		i++;
 	}
 }
@@ -30,13 +33,13 @@ void	draw_line(t_point a, t_point b, t_data *data)
 	double	step_x_y_max[3];
 
 	a_ = a;
-	delta.x = mod(a.x - b.x);
-	delta.y = mod(a.y - b.y);
+	delta.x = fabs(a.x - b.x);
+	delta.y = fabs(a.y - b.y);
 	cur.x = a.x;
 	cur.y = a.y;
 	step_x_y_max[0] = b.x - a.x;
 	step_x_y_max[1] = b.y - a.y;
-	step_x_y_max[2] = max(mod(step_x_y_max[0]), mod(step_x_y_max[1]));
+	step_x_y_max[2] = fmax(fabs(step_x_y_max[0]), fabs(step_x_y_max[1]));
 	step_x_y_max[0] /= step_x_y_max[2];
 	step_x_y_max[1] /= step_x_y_max[2];
 	while ((int)(cur.x - b.x) || (int)(cur.y - b.y))
@@ -48,6 +51,24 @@ void	draw_line(t_point a, t_point b, t_data *data)
 		cur.x += step_x_y_max[0];
 		cur.y += step_x_y_max[1];
 	}
+}
+
+void 	first_draw(t_data *data)
+{
+	int	*image;
+	int	i;
+
+	image = (int *)(data->data_addr);
+	i = 0;
+	while (i < HEIGHT * WIDTH)
+	{
+		if (i % WIDTH < MENU_WIDTH)
+			image[i] = MENU_BACKGROUND;
+		else
+			image[i] = BACKGROUND;	
+		i++;
+	}
+	mlx_put_image_to_window(data->mlx_ptr, data->mlx_win, data->img, 0, 0);
 }
 
 /* Cicle for all map*/

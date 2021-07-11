@@ -143,18 +143,13 @@ int	ft_keyyboard(int keycode, t_data *data);
 
 
 /* Draw */
+void 	first_draw(t_data *data);
 void	draw(t_data *data);
 void	print_menu(t_data *data);
 
 /* Projection */
 
 t_point		project(t_point p, t_data *data);
-
-/* Math Utils */
-
-double	max(double a, double b);
-int 	mod(int i);
-int 	ft_min(int a , int b);
 
 
 /* Points */

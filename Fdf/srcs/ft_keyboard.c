@@ -2,6 +2,8 @@
 #include "mlx.h"
 #include <stdio.h>
 
+
+
 int	ft_keyyboard(int keycode, t_data *data)
 {
 	(void) data;

@@ -24,22 +24,6 @@ int main(int argc, char **argv)
 		ft_parse_map(argv[1], &data.map);
 		data.map.z_max = map_max_z(&data.map);
 		data.map.z_min = map_min_z(&data.map);
-		
-		// int i;
-		// int j;
-
-		// i = 0;
-		// while (i < data.map.height)
-		// {
-		// 	j = 0;
-		// 	while (j < data.map.width)
-		// 	{
-		// 		printf("%2d ", data.map.z_matrix[i][j]);
-		// 		j++;
-		// 	}
-		// 	printf("\n");
-		// 	i++;
-		// }
 		ft_init_mlx(&data);
 	}
 	return (0);

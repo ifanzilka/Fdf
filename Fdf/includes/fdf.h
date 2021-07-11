@@ -141,7 +141,7 @@ int		get_default_color(int z, t_map *map);
 /* Keyboard */
 
 int		ft_keyyboard(int keycode, t_data *data);
-int 	ft_is_projection(int code);
+int		ft_is_projection(int code);
 int		ft_keyyboard2(int code, t_data *data);
 
 /* Mlx fun */

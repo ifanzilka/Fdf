@@ -2,7 +2,7 @@
 
 # Screen
 ![This is a alt text.](https://github.com/ifanzilka/Fdf/blob/master/image/Screen%20Shot%202021-07-12%20at%205.21.40%20PM.png)
-
+![This is a alt text.](https://github.com/ifanzilka/Fdf/blob/master/image/Screen%20Shot%202021-07-12%20at%205.25.04%20PM.png)
 A simple 3D height-map renderer. You can rotate models, color is defined by
 relative height in the map. More features planned!
 

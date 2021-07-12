@@ -32,5 +32,3 @@ directory. The one in the screenshot above is `maps/42.fdf`.
 Controls are: drag with left click to rotate, drag with right to zoom, drag with
 both to move around.
 
-## License
-This project is licensed under the GNU General Public License 3.
